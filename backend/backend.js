@@ -10,7 +10,7 @@ app.use("/kepek",express.static("kepek"))
 app.use("/kepek2",express.static("kepek2"))
 
 const pool = mysql.createPool({
-        host: 'localhost',
+        host: process.env.DB_HOST || 'localhost',
         user: 'root',
         password: '',
         database: 'jatek2025'

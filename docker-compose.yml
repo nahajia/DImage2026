@@ -2,7 +2,7 @@ services:
   db:
     image: mysql:8.0
     container_name: jatek-db
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: "jatek2025"
@@ -14,16 +14,18 @@ services:
   backend:
     image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/jatek-backend:main
     container_name: jatek-backend
-    restart: always
+    restart: unless-stopped
     ports:
       - "3000:3000"
+    environment:
+      - DB_HOST=${DB_HOST}
     depends_on:
       - db
 
   frontend:
     image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/jatek-frontend:main
     container_name: jatek-frontend
-    restart: always
+    restart: unless-stopped
     ports:
       - "80:80"
     depends_on:
