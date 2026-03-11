@@ -7,7 +7,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: "jatek2025"
     ports:
-      - "3306:3306"
+      - "3307:3307"
     volumes:
       - ./backend/127_0_0_1.sql:/docker-entrypoint-initdb.d/init.sql
 
@@ -27,6 +27,6 @@ services:
     container_name: jatek-frontend
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "5090:80"
     depends_on:
       - backend
