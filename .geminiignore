@@ -1,0 +1,19 @@
+# Mirroring .gitignore for AI context
+node_modules/
+build/
+dist/
+coverage/
+.env*
+*.log
+
+# Sensitive or large binaries that don't need analysis
+**/*.jpg
+**/*.png
+**/*.svg
+**/*.ico
+**/*.sql
+
+# Git and internal config
+.git/
+.vscode/
+.idea/
