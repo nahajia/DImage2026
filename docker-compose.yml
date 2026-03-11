@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: jatek-db
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "jatek2025"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./backend/127_0_0_1.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/jatek-backend:latest
+    container_name: jatek-backend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  frontend:
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/jatek-frontend:latest
+    container_name: jatek-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
