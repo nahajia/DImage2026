@@ -12,7 +12,7 @@ services:
       - ./backend/127_0_0_1.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
-    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/jatek-backend:main
+    build: ./backend
     container_name: jatek-backend
     restart: unless-stopped
     ports:
@@ -23,7 +23,7 @@ services:
       - db
 
   frontend:
-    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/jatek-frontend:main
+    build: ./frontend
     container_name: jatek-frontend
     restart: unless-stopped
     ports:

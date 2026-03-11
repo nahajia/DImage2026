@@ -1,5 +1,5 @@
 const express = require('express')
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const cors = require('cors')
 const app = express()
 const port = 3000
@@ -189,7 +189,7 @@ app.put('/jatekModosit/:jatek_id', (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port ${port} - DB_HOST: ${process.env.DB_HOST || 'localhost'}`)
 })
 
 
